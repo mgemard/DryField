@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    
+        <button id="playButton" disabled>Jouer</button>
+        <button id="scoresButton">Scores</button>
+        <button id="goButton">Go</button>
+
+    <div id="play">
+        <span>Score:
+            <span id="score">0 harvest</span>
+        </span>
+        <span>Money:
+            <span id="money">0 $</span>
+        </span>
+        <span>Water:
+            <span id="water">3 L</span>
+        </span>
+
+
+        <table>
+            <tr>
+                <td>
+                    <button id="irrigate1">Irrigate</button>
+                </td>
+                <td>
+                    <button id="irrigate2">Irrigate</button>
+                </td>
+                <td>
+                    <button id="irrigate3">Irrigate</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="waterChamp1">3 L</div>
+                </td>
+                <td>
+                    <div id="waterChamp2">3 L</div>
+                </td>
+                <td>
+                    <div id="waterChamp3">3 L</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button id="harvest1">Harvest</button>
+                </td>
+                <td>
+                    <button id="harvest2">Harvest</button>
+                </td>
+                <td>
+                    <button id="harvest3">Harvest</button>
+                </td>
+            </tr>
+        </table>
+
+        <button id="openBuyWater">Buy water</button>
+
+
+        <span>
+            <input id="qtyBuyWater" value="1">
+            <button id="buyWater">Buy</button>
+        </span>
+
+    </div>
+
+    <div id="scores" style="display:none">
+        <table>
+            <tr>
+                <th>Player</th>
+                <th>Harvest count</th>
+            </tr>
+            <tr>
+                <td id="joueur1"></td>
+                <td id="nbHarvest1"></td>
+            </tr>
+            <tr>
+                <td id="joueur2"></td>
+                <td id="nbHarvest2"></td>
+            </tr>
+            <tr>
+                <td id="joueur3"></td>
+                <td id="nbHarvest3"></td>
+            </tr>
+            <tr>
+                <td id="joueur4"></td>
+                <td id="nbHarvest4"></td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+
+</html>
+
+<script type="text/javascript" src="public/js/dryfieldEvents.js"></script>
+<script type="text/javascript" src="public/js/eventEmitter.js"></script>
+<script type="text/javascript" src="model/FieldModel.js"></script>
+<script type="text/javascript" src="model/gameModel.js"></script>
+<script type="text/javascript" src="view/gameView.js"></script>
+<script type="text/javascript" src="controller/gameController.js"></script>
+<script type="text/javascript" src="controller/soundController.js"></script>
+<script>
+
+    // on créer une fonction anonyme qui sera exécutée une fois le dom chargé
+    document.addEventListener('DOMContentLoaded', function () {
+
+
+        GameDefaultSettings = {
+            waterPrice = 1.5,
+            conso = 1
+        }
+
+
+        let gameModel;
+        let fields = [];
+        let gameView;
+        let gameController;
+        let soundController;
+
+        gameModel = new GameModel(GameDefaultSettings);
+        gameView = new GameView(gameModel);
+        gameController = new GameController(gameView);
+        // soundController = new SoundController(gameView);
+
+
+
+        // gameController.startGame();
+
+
+
+
+    }, false);
+
+</script>
