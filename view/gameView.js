@@ -2,6 +2,8 @@ function GameView(gameModel) {
     EventEmitter.call(this)
     this.gameModel = gameModel;
 
+    this.initUI();
+
     gameModel.on(DryfieldEvents.waterChanged, this.refreshWater.bind(this));
 
     document.getElementById('playButton').addEventListener('click', () => {
@@ -50,7 +52,43 @@ function GameView(gameModel) {
 }
 
 GameView.prototype.initUI = function () {
-    // document.getElementById('water');
+    const table = `<table id="tableField">
+                        <tr>
+                            <td>
+                                <button id="irrigate1">Irrigate</button>
+                            </td>
+                            <td>
+                                <button id="irrigate2">Irrigate</button>
+                            </td>
+                            <td>
+                                <button id="irrigate3">Irrigate</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div id="waterChamp1">3 L</div>
+                            </td>
+                            <td>
+                                <div id="waterChamp2">3 L</div>
+                            </td>
+                            <td>
+                                <div id="waterChamp3">3 L</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button id="harvest1">Harvest</button>
+                            </td>
+                            <td>
+                                <button id="harvest2">Harvest</button>
+                            </td>
+                            <td>
+                                <button id="harvest3">Harvest</button>
+                            </td>
+                        </tr>
+                    </table>`;
+
+    document.getElementById('tableField').innerHTML = table;
 }
 
 GameView.prototype = Object.create(EventEmitter.prototype)
@@ -58,3 +96,6 @@ GameView.prototype = Object.create(EventEmitter.prototype)
 GameView.prototype.refreshWater = function (d) {
     document.getElementById('water').innerHTML = this.gameModel.water + " L";
 }
+
+
+

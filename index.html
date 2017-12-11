@@ -19,42 +19,9 @@
             <span id="water">3 L</span>
         </span>
 
-
-        <table>
-            <tr>
-                <td>
-                    <button id="irrigate1">Irrigate</button>
-                </td>
-                <td>
-                    <button id="irrigate2">Irrigate</button>
-                </td>
-                <td>
-                    <button id="irrigate3">Irrigate</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <div id="waterChamp1">3 L</div>
-                </td>
-                <td>
-                    <div id="waterChamp2">3 L</div>
-                </td>
-                <td>
-                    <div id="waterChamp3">3 L</div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <button id="harvest1">Harvest</button>
-                </td>
-                <td>
-                    <button id="harvest2">Harvest</button>
-                </td>
-                <td>
-                    <button id="harvest3">Harvest</button>
-                </td>
-            </tr>
-        </table>
+        <div id="tableField">
+        </div>
+        
 
         <button id="openBuyWater">Buy water</button>
 
@@ -109,8 +76,9 @@
 
 
         GameDefaultSettings = {
-            waterPrice = 1.5,
-            conso = 1
+            waterPrice : 1.5,
+            conso : 1,
+            nbField : 3
         }
 
 
