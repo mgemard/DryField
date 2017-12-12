@@ -38,45 +38,54 @@ GameController.prototype.scores = function () {
 
 }
 
-GameController.prototype.getScores() {
+GameController.prototype.getScores = function () {
     // Make a request for a user with a given ID
-    axios.get(this.model.webService)
+    axios.get(this.gameModel.webService)
         .then(function (response) {
-            for (let i = 0; index < response.list.length; index++) {
-                const element = array[index];
-                
+            let list = response.data.list;
+            const tableBegin = `<table><tr><th>Name</th><th>Score</th></tr><tr>`;
+            const tr = `</tr><tr>`;
+            const tableEnd = `</tr ></table >`;
+            let row = "";
+
+            console.log(list);
+            for (let i = 0; i < list.length; i++) {
+                let player = list[i];
+                console.log(player);
+                row += `<tr><td>${player.name}</td><td>${player.score}</td></tr>`;
             }
+
+            let table = tableBegin + row + tableEnd;
+            console.log(table);
+            document.getElementById('scores').innerHTML = table;
         })
         .catch(function (error) {
             console.log(error);
         });
-        
-        
-    //     <table>
-    //     <tr>
-    //         <th>Player</th>
-    //         <th>Harvest count</th>
-    //     </tr>
-    //     <tr>
-    //         <td id="joueur1"></td>
-    //         <td id="nbHarvest1"></td>
-    //     </tr>
-    //     <tr>
-    //         <td id="joueur2"></td>
-    //         <td id="nbHarvest2"></td>
-    //     </tr>
-    //     <tr>
-    //         <td id="joueur3"></td>
-    //         <td id="nbHarvest3"></td>
-    //     </tr>
-    //     <tr>
-    //         <td id="joueur4"></td>
-    //         <td id="nbHarvest4"></td>
-    //     </tr>
-    // </table>
-
-
 }
+
+//     <table>
+//     <tr>
+//         <th>Player</th>
+//         <th>Harvest count</th>
+//     </tr>
+//     <tr>
+//         <td id="joueur1"></td>
+//         <td id="nbHarvest1"></td>
+//     </tr>
+//     <tr>
+//         <td id="joueur2"></td>
+//         <td id="nbHarvest2"></td>
+//     </tr>
+//     <tr>
+//         <td id="joueur3"></td>
+//         <td id="nbHarvest3"></td>
+//     </tr>
+//     <tr>
+//         <td id="joueur4"></td>
+//         <td id="nbHarvest4"></td>
+//     </tr>
+// </table>
 
 GameController.prototype.go = function () {
     document.getElementById('scoresButton').disabled = true;

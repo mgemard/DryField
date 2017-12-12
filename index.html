@@ -31,28 +31,6 @@
     </div>
 
     <div id="scores" style="display:none">
-        <table>
-            <tr>
-                <th>Player</th>
-                <th>Harvest count</th>
-            </tr>
-            <tr>
-                <td id="joueur1"></td>
-                <td id="nbHarvest1"></td>
-            </tr>
-            <tr>
-                <td id="joueur2"></td>
-                <td id="nbHarvest2"></td>
-            </tr>
-            <tr>
-                <td id="joueur3"></td>
-                <td id="nbHarvest3"></td>
-            </tr>
-            <tr>
-                <td id="joueur4"></td>
-                <td id="nbHarvest4"></td>
-            </tr>
-        </table>
     </div>
 
 </body>
@@ -76,10 +54,11 @@
             waterPrice: 1,
             conso: 1,
             nbField: 3,
-            fieldWaterInit: 21,
+            fieldWaterInit: 3,
             waterInit: 3,
-            interval: 1,
-            webService: "http://localhost:3000/scores"
+            interval: 1000,
+            webService: "http://localhost:3000/scores",
+            name: 'mat'
         }
 
         let fields = [];

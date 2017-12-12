@@ -16,6 +16,7 @@ function GameModel(gameDefaultSettings) {
     this.interval = gameDefaultSettings.interval;
     this.pause = false;
     this.webService = gameDefaultSettings.webService;
+    this.name = gameDefaultSettings.name;
 }
 
 GameModel.prototype = Object.create(EventEmitter.prototype)
@@ -70,7 +71,7 @@ GameModel.prototype.openBuyWater = function () {
 GameModel.prototype.buyWater = function (n) {
     this.pause = false;
     this.water += n;
-    this.money -= this.waterPrice;
+    this.money -= this.waterPrice*n;
     this.emit(DryfieldEvents.hideBuyWater);
     this.emit(DryfieldEvents.moneyChanged);
     this.emit(DryfieldEvents.waterChanged);
@@ -82,7 +83,7 @@ GameModel.prototype.noFieldsToCollect = function (n) {
 
 GameModel.prototype.gameOver = function (n) {
     clearInterval(this.timer);
-    console.log("Game over!");
+    console.log(`Game over! name:${this.name} score:${this.score}`);
 
     axios.post(this.webService, {
         name: this.name,
