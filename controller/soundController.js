@@ -7,11 +7,23 @@ function SoundController() {
 
 SoundController.prototype = Object.create(EventEmitter.prototype)
 
-SoundController.prototype.setWater = function (n) {
-    this.water = n;
-    this.notify('set water', this.water);
+SoundController.prototype.init = function (gameView) {
+    this.gameView = gameView;
+    this.game = gameView.gameModel;
+    this.fields = gameView.fields;
+
+    this.harvestSound = new Audio('public/sounds/money.wav');
+    this.growSound = new Audio('public/sounds/field.wav');
+
+    this.gameView.on('harvest', this.playHarvestSound.bind(this));
+    this.gameView.on('endGrowth', this.playGrowthEnd.bind(this));
+
 }
 
-SoundController.prototype.getWater = function (n) {
-    return this.water;
+SoundController.prototype.playHarvestSound = function () {
+    this.harvestSound.play();
+}
+
+SoundController.prototype.playGrowthEnd = function () {
+    this.growthEndSound.play();
 }

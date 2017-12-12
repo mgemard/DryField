@@ -3,31 +3,28 @@
 
 <body>
 
-    
-        <button id="playButton" disabled>Jouer</button>
-        <button id="scoresButton">Scores</button>
-        <button id="goButton">Go</button>
 
-    <div id="play">
+    <button id="playButton" disabled>Jouer</button>
+    <button id="scoresButton">Scores</button>
+    <button id="goButton">Go</button>
+
+    <div id="play" style="display:none">
         <span>Score:
-            <span id="score">0 harvest</span>
+            <span id="score">? harvest</span>
         </span>
         <span>Money:
-            <span id="money">0 $</span>
+            <span id="money">? $</span>
         </span>
         <span>Water:
-            <span id="water">3 L</span>
+            <span id="water">? L</span>
         </span>
 
-        <div id="tableField">
-        </div>
-        
+        <div id="tableField"></div>
 
         <button id="openBuyWater">Buy water</button>
 
-
-        <span>
-            <input id="qtyBuyWater" value="1">
+        <span id="buyWaterPopup" style="display:none">
+            <input id="qtyBuyWater" value="1" type="number">
             <button id="buyWater">Buy</button>
         </span>
 
@@ -61,7 +58,7 @@
 </body>
 
 </html>
-
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript" src="public/js/dryfieldEvents.js"></script>
 <script type="text/javascript" src="public/js/eventEmitter.js"></script>
 <script type="text/javascript" src="model/FieldModel.js"></script>
@@ -72,17 +69,19 @@
 <script>
 
     // on créer une fonction anonyme qui sera exécutée une fois le dom chargé
+    var gameModel;
     document.addEventListener('DOMContentLoaded', function () {
 
-
         GameDefaultSettings = {
-            waterPrice : 1.5,
-            conso : 1,
-            nbField : 3
+            waterPrice: 1,
+            conso: 1,
+            nbField: 3,
+            fieldWaterInit: 21,
+            waterInit: 3,
+            interval: 1,
+            webService: "http://localhost:3000/scores"
         }
 
-
-        let gameModel;
         let fields = [];
         let gameView;
         let gameController;
@@ -94,11 +93,9 @@
         // soundController = new SoundController(gameView);
 
 
+        gameController.forceRefresh();
 
         // gameController.startGame();
-
-
-
 
     }, false);
 
